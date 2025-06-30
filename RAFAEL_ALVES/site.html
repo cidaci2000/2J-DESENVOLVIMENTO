@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maneiro D+ - Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+            --gray: #adb5bd;
+            --success: #4cc9f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: var(--dark);
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .login-btn {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--dark);
+            margin: 2px 0;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .carrossel {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .carrossel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carrossel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .carrossel-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carrossel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.7);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carrossel-btn:hover {
+            background: white;
+        }
+
+        .anterior {
+            left: 15px;
+        }
+
+        .proximo {
+            right: 15px;
+        }
+
+        .carrossel-indicadores {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicador {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicador.ativo {
+            background-color: white;
+        }
+
+        .produtos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .produto-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .produto-imagem {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .produto-info {
+            padding: 1.2rem;
+        }
+
+        .produto-titulo {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .produto-descricao {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .produto-preco {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .botao-comprar {
+            display: block;
+            text-align: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.7rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .botao-comprar:hover {
+            background-color: var(--secondary);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .footer-section h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--success);
+        }
+
+        .footer-section p {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--success);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--success);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .direitos {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: clip-path 0.4s ease;
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+            }
+
+            .carrossel {
+                height: 300px;
+                margin: 1rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="#" class="logo">
+            <img src="images.png" alt="Logo Maneiro D+">
+            <span>Maneiro D+</span>
+        </a>
+       
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+       
+        <ul class="nav-links" id="navLinks">
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="produto.html">Produtos</a></li>
+            <li><a href="origens.html">Origens</a></li>
+            <li><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <!-- Seção do Carrossel -->
+    <section class="carrossel">
+        <div class="carrossel-container">
+            <!-- Slide 1 -->
+            <div class="carrossel-slide ativo">
+                <img src="mouse.jpg" class="carrossel-imagem" alt="Mouse Gamer">
+            </div>
+           
+            <!-- Slide 2 -->
+            <div class="carrossel-slide">
+                <img src="MONITOR.avif" class="carrossel-imagem" alt="Monitor Profissional">
+            </div>
+           
+            <!-- Slide 3 -->
+            <div class="carrossel-slide">
+                <img src="VENT.jpg" class="carrossel-imagem" alt="Ventilador RGB">
+            </div>
+        </div>
+
+        <!-- Botões de Navegação -->
+        <button class="carrossel-btn anterior">&#10094;</button>
+        <button class="carrossel-btn proximo">&#10095;</button>
+
+        <!-- Indicadores -->
+        <div class="carrossel-indicadores">
+            <div class="indicador ativo"></div>
+            <div class="indicador"></div>
+            <div class="indicador"></div>
+        </div>
+    </section>
+
+    <!-- Seção de Produtos -->
+    <section class="produtos-container">
+        <!-- Card 1 -->
+        <article class="produto-card">
+            <img src="mouse.jpg" class="produto-imagem" alt="Mouse Gamer">
+            <div class="produto-info">
+                <h3 class="produto-titulo">MOUSE MANEIRO D+</h3>
+                <p class="produto-descricao">Mouse gamer com iluminação RGB, 6 botões programáveis e sensor de alta precisão.</p>
+                <p class="produto-preco">R$ 299,90</p>
+                <a href="#" class="botao-comprar">Comprar</a>
+            </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="produto-card">
+            <img src="MONITOR.avif" class="produto-imagem" alt="Monitor Profissional">
+            <div class="produto-info">
+                <h3 class="produto-titulo">MONITOR MUITO MASSA</h3>
+                <p class="produto-descricao">Monitor 27" 4K com taxa de atualização de 144Hz e tecnologia HDR.</p>
+                <p class="produto-preco">R$ 1.599,90</p>
+                <a href="#" class="botao-comprar">Comprar</a>
+            </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="produto-card">
+            <img src="VENT.jpg" class="produto-imagem" alt="Ventilador RGB">
+            <div class="produto-info">
+                <h3 class="produto-titulo">VENTILADOR REFRESCA DEMAIS</h3>
+                <p class="produto-descricao">Ventilador com iluminação RGB, 3 velocidades e controle remoto.</p>
+                <p class="produto-preco">R$ 399,90</p>
+                <a href="#" class="botao-comprar">Comprar</a>
+            </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="produto-card">
+            <img src="KA.jpg" class="produto-imagem" alt="Teclado Mecânico">
+            <div class="produto-info">
+                <h3 class="produto-titulo">ROBERTO - TECLADO MECÂNICO</h3>
+                <p class="produto-descricao">Teclado mecânico switch azul, retroiluminação RGB e design ergonômico.</p>
+                <p class="produto-preco">R$ 999,90</p>
+                <a href="#" class="botao-comprar">Comprar</a>
+            </div>
+        </article>
+
+        <!-- Mais produtos... -->
+        <article class="produto-card">
+            <img src="MONITOR.avif" class="produto-imagem" alt="Fone de Ouvido">
+            <div class="produto-info">
+                <h3 class="produto-titulo">FONE MANEIRO</h3>
+                <p class="produto-descricao">Fone Bluetooth com cancelamento de ruído e 30h de bateria.</p>
+                <p class="produto-preco">R$ 499,90</p>
+                <a href="#" class="botao-comprar">Comprar</a>
+            </div>
+        </article>
+
+        <article class="produto-card">
+            <img src="mouse.jpg" class="produto-imagem" alt="Webcam HD">
+            <div class="produto-info">
+                <h3 class="produto-titulo">WEBCAM HD</h3>
+                <p class="produto-descricao">Webcam Full HD com microfone integrado e ajuste automático de luz.</p>
+                <p class="produto-preco">R$ 349,90</p>
+                <a href="#" class="botao-comprar">Comprar</a>
+            </div>
+        </article>
+    </section>
+</main>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Sobre Nós</h4>
+            <p>A Maneiro D+ traz os produtos mais inovadores e tecnológicos com qualidade premium e preços acessíveis.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Links Rápidos</h4>
+            <ul>
+                <li><a href="sobre.html">Sobre a Empresa</a></li>
+                <li><a href="produto.html">Nossos Produtos</a></li>
+                <li><a href="origens.html">Nossas Origens</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
+                <li><a href="#">Termos de Uso</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Ajuda</h4>
+            <ul>
+                <li><a href="#">Central de Ajuda</a></li>
+                <li><a href="#">Trocas e Devoluções</a></li>
+                <li><a href="#">Formas de Pagamento</a></li>
+                <li><a href="#">Entregas</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Contato</h4>
+            <p><i class="fas fa-map-marker-alt"></i> Av. Brasil, 1000 - Cascavel PR</p>
+            <p><i class="fas fa-phone"></i> (45) 4002-8922</p>
+            <p><i class="fas fa-envelope"></i> contato@maneirodmais.com</p>
+            <p><i class="fas fa-clock"></i> Seg-Sex: 9h às 18h</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p class="direitos">© 2025 MANEIROD+.corp - Todos os direitos reservados</p>
+    </div>
+</footer>
+
+<script>
+    // Elementos DOM
+    const carrosselContainer = document.querySelector('.carrossel-container');
+    const slides = document.querySelectorAll('.carrossel-slide');
+    const indicadores = document.querySelectorAll('.indicador');
+    const btnAnterior = document.querySelector('.anterior');
+    const btnProximo = document.querySelector('.proximo');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    let currentIndex = 0;
+    let autoPlay = true;
+    let intervalo = 5000;
+    let intervaloID;
+
+    // Função para mudar slide
+    function mudarSlide(novoIndex) {
+        if (novoIndex < 0) novoIndex = slides.length - 1;
+        if (novoIndex >= slides.length) novoIndex = 0;
+
+        carrosselContainer.style.transform = `translateX(-${novoIndex * 100}%)`;
+        currentIndex = novoIndex;
+       
+        // Atualizar indicadores
+        indicadores.forEach(ind => ind.classList.remove('ativo'));
+        indicadores[currentIndex].classList.add('ativo');
+    }
+
+    // Iniciar auto-play
+    function iniciarAutoPlay() {
+        intervaloID = setInterval(() => {
+            if(autoPlay) mudarSlide(currentIndex + 1);
+        }, intervalo);
+    }
+
+    // Event listeners
+    btnAnterior.addEventListener('click', () => {
+        mudarSlide(currentIndex - 1);
+        resetAutoPlay();
+    });
+
+    btnProximo.addEventListener('click', () => {
+        mudarSlide(currentIndex + 1);
+        resetAutoPlay();
+    });
+
+    indicadores.forEach((indicador, index) => {
+        indicador.addEventListener('click', () => {
+            mudarSlide(index);
+            resetAutoPlay();
+        });
+    });
+
+    // Resetar auto-play após interação
+    function resetAutoPlay() {
+        clearInterval(intervaloID);
+        iniciarAutoPlay();
+    }
+
+    // Navegação por teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            mudarSlide(currentIndex - 1);
+            resetAutoPlay();
+        }
+        if (e.key === 'ArrowRight') {
+            mudarSlide(currentIndex + 1);
+            resetAutoPlay();
+        }
+    });
+
+    // Menu mobile
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Iniciar
+    iniciarAutoPlay();
+</script>
+</body>
+</html>

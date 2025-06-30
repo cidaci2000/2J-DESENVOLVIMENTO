@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unreal Games - A Fronteira da Realidade Virtual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #121212;
+            --secondary: #1e1e1e;
+            --accent: #00aaff;
+            --accent-dark: #0077cc;
+            --text: #e0e0e0;
+            --highlight: #ff5500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a, #1a1a2e);
+            color: var(--text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Efeito de partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header e navegação */
+        header {
+            background: rgba(10, 10, 26, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 170, 255, 0.3);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            color: var(--accent);
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--accent), #00ddff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+
+        .nav-btn:hover::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 5% 4rem;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 170, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 170, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 170, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .hero-visual {
+            position: relative;
+            perspective: 1000px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .cube {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-25deg) rotateY(45deg);
+            margin: 0 auto;
+            animation: rotate 20s infinite linear;
+        }
+
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(0, 170, 255, 0.1);
+            border: 1px solid rgba(0, 170, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+        }
+
+        .front { transform: translateZ(100px); }
+        .back { transform: translateZ(-100px) rotateY(180deg); }
+        .top { transform: translateY(-100px) rotateX(90deg); }
+        .bottom { transform: translateY(100px) rotateX(-90deg); }
+        .left { transform: translateX(-100px) rotateY(-90deg); }
+        .right { transform: translateX(100px) rotateY(90deg); }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background: rgba(10, 10, 26, 0.6);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(30, 30, 46, 0.6);
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 170, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 170, 255, 0.2);
+            border-color: var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+        }
+
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .feature-description {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+
+        /* Games Section */
+        .games {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: rgba(30, 30, 46, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 170, 255, 0.2);
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 170, 255, 0.3);
+            border-color: var(--accent);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #0a0a1a, #1a1a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 5rem;
+        }
+
+        .game-content {
+            padding: 1.5rem;
+        }
+
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .game-description {
+            margin-bottom: 1.5rem;
+            color: #ccc;
+        }
+
+        .game-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 5rem 5%;
+            background: rgba(10, 10, 26, 0.8);
+            text-align: center;
+            position: relative;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            border: 1px solid rgba(0, 170, 255, 0.3);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .newsletter-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(5, 5, 15, 0.95);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(0, 170, 255, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links i {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(0, 170, 255, 0.1);
+            color: var(--accent);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            color: #777;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(0, 170, 255, 0.1);
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateX(-25deg) rotateY(0);
+            }
+            to {
+                transform: rotateX(-25deg) rotateY(360deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-btns {
+                justify-content: center;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de partículas -->
+    <div id="particles-js"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-dice-d20 logo-icon"></i>
+                <div class="logo-text">UNREAL GAMES</div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#"><i class="fas fa-gamepad"></i> Jogos</a></li>
+                    <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> Notícias</a></li>
+                    <li><a href="#" class="nav-btn">Jogar Agora</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>EXPERIÊNCIAS DE JOGO ALÉM DA REALIDADE</h1>
+                <p>Bem-vindo ao futuro dos jogos digitais. Explore mundos imersivos criados com a poderosa Unreal Engine 5, onde a fronteira entre realidade e fantasia desaparece.</p>
+                <div class="hero-btns">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-play"></i> Jogar Agora</a>
+                    <a href="#" class="btn btn-secondary"><i class="fas fa-download"></i> Baixar Engine</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="cube">
+                    <div class="face front"><i class="fas fa-cube"></i></div>
+                    <div class="face back"><i class="fas fa-gamepad"></i></div>
+                    <div class="face top">UE5</div>
+                    <div class="face bottom">2023</div>
+                    <div class="face left"><i class="fas fa-dragon"></i></div>
+                    <div class="face right"><i class="fas fa-vr-cardboard"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">TECNOLOGIA DE PONTA</h2>
+            <p class="section-subtitle">Descubra os recursos revolucionários da Unreal Engine que estão transformando a indústria de jogos</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3 class="feature-title">Lumen - Iluminação Global</h3>
+                <p class="feature-description">Iluminação em tempo real que reage dinamicamente à cena e superfícies, criando ambientes ultra-realistas.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h3 class="feature-title">Nanite - Geometria Virtual</h3>
+                <p class="feature-description">Renderize detalhes complexos com bilhões de polígonos sem perda de desempenho.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-people-arrows"></i>
+                </div>
+                <h3 class="feature-title">MetaHuman Creator</h3>
+                <p class="feature-description">Crie personagens humanos digitalmente realistas em minutos, não semanas.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+                <h3 class="feature-title">Realidade Virtual</h3>
+                <p class="feature-description">Suporte nativo para VR com desempenho otimizado para experiências imersivas.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Games Section -->
+    <section class="games">
+        <div class="section-header">
+            <h2 class="section-title">JOGOS EM DESTAQUE</h2>
+            <p class="section-subtitle">Explore nossos títulos mais impressionantes desenvolvidos com Unreal Engine 5</p>
+        </div>
+        
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-image" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+                    <i class="fas fa-dragon"></i>
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">CHRONOS LEGACY</h3>
+                    <div class="game-info">
+                        <span><i class="fas fa-tag"></i> RPG/Ação</span>
+                        <span><i class="fas fa-calendar"></i> 2023</span>
+                    </div>
+                    <p class="game-description">Uma jornada épica através de reinos esquecidos, com combate tático e história profunda.</p>
+                    <a href="#" class="game-btn">Explorar Mundo</a>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background: linear-gradient(135deg, #1a1a2e, #0f3460);">
+                    <i class="fas fa-space-shuttle"></i>
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">NEBULA ODYSSEY</h3>
+                    <div class="game-info">
+                        <span><i class="fas fa-tag"></i> FPS/Espaço</span>
+                        <span><i class="fas fa-calendar"></i> 2023</span>
+                    </div>
+                    <p class="game-description">Batalhas interestelares em vastos campos de asteroides com física realista.</p>
+                    <a href="#" class="game-btn">Juntar-se à Batalha</a>
+                </div>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-image" style="background: linear-gradient(135deg, #1a1a2e, #1b1b2f);">
+                    <i class="fas fa-city"></i>
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">NEON METROPOLIS</h3>
+                    <div class="game-info">
+                        <span><i class="fas fa-tag"></i> Cyberpunk/RPG</span>
+                        <span><i class="fas fa-calendar"></i> 2024</span>
+                    </div>
+                    <p class="game-description">Um mundo aberto cyberpunk com escolhas morais que moldam o destino da cidade.</p>
+                    <a href="#" class="game-btn">Visitar Cidade</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h2 class="section-title">JUNTE-SE À NOSSA COMUNIDADE</h2>
+            <p>Receba as últimas atualizações, lançamentos de jogos e ofertas exclusivas diretamente na sua caixa de entrada.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="newsletter-btn">Inscrever-se</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>UNREAL GAMES</h3>
+                <p>Levando a experiência de jogos a um novo patamar com tecnologia de ponta e criatividade ilimitada.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Início</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Jogos</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Notícias</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Suporte</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Fórum</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Recursos</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentação</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tutoriais</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Assets Store</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Comunidade</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> contato@unrealgames.com</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> +55 (11) 99999-8888</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Suporte 24/7</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Unreal Games. Todos os direitos reservados. Unreal Engine e seus logotipos são marcas comerciais da Epic Games, Inc.</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Configuração do efeito de partículas
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00aaff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00aaff",
+                    "opacity": 0.1,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 0.5
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        
+        // Animação de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
