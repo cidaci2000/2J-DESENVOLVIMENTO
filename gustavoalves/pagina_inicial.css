@@ -1,0 +1,55 @@
+header {
+    background-color: #68bbeb;
+    color: #000000;
+    padding: 20px;
+    text-align: center;
+}
+h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+body {
+    background-image: url("fundo_estacionamento.png");
+    background-size: cover; 
+    
+  }
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#lugares {
+    background-color: rgb(67, 56, 122);
+    padding: 20px;
+    border: 1px solid rgb(90, 73, 176);
+    
+}
+
+.lugares-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+}
+
+.lugar {
+    background-color: rgb(66, 81, 89);
+    padding: 20px;
+    margin: 10px;
+    border: 22px solid rgb(104, 123, 134);
+    border-radius: 22px;
+    
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #570997;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+

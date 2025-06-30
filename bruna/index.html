@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mega Esportes</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo"><img src="images.png" alt="Mega Atleta/Mega Esportiva"></a>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href=".html">Mega</a></li>
+                <li><a href="produto.html">Produtos</a></li>
+                <li><a href="origens.html">Origens</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="carrossel">
+            <div class="carrossel-container">
+                <div class="carrossel-slide ativo">
+                    <img src="1.jpg" class="carrossel-imagem" alt="Produto 1">
+                </div>
+                <div class="carrossel-slide">
+                    <img src="2.jpg" class="carrossel-imagem" alt="Produto 2">
+                </div>
+                <div class="carrossel-slide">
+                    <img src="3.jpg" class="carrossel-imagem" alt="Produto 3">
+                </div>
+            </div>
+            <div class="carrossel-indicadores">
+                <div class="indicador ativo"></div>
+                <div class="indicador"></div>
+                <div class="indicador"></div>
+            </div>
+        </section>
+
+        <section class="produtos-container">
+            <article class="produto-card">
+                <img src="1.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Basquete Feminino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 299,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="2.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Futsal Masculino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 399,99</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="3.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Corrida Masculino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 249,99</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="4.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Volei Feminino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 339,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+        </section>
+        <section class="produtos-container">
+            <article class="produto-card">
+                <img src="1.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Basquete Feminino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 299,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="2.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Futsal Masculino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 399,99</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="3.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Corrida Masculino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 249,99</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+
+            <article class="produto-card">
+                <img src="4.jpg" class="produto-imagem" alt="Produto">
+                <div class="produto-info">
+                    <h3 class="produto-titulo">Tênis de Volei Feminino</h3>
+                    <p class="produto-descricao">Descrição breve do produto e suas principais características.</p>
+                    <p class="produto-preco">R$ 339,90</p>
+                    <a href="#" class="botao-comprar">Comprar</a>
+                </div>
+            </article>
+        </section>
+    </main>
+    
+    <footer class="rodape">
+        <ul class="lista">
+            <li><a href="#">Endereço: Rua Ceep 234 - Cascavel-PR</a></li>
+            <li><a href="#">Telefone: (45) 9999-9999</a></li>
+            <li><a href="#">Contato: (45) 4002-2002</a></li>
+        </ul>
+    </footer>
+    
+    <script>
+        // Menu Mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Carrossel
+        const carrosselContainer = document.querySelector('.carrossel-container');
+        const slides = document.querySelectorAll('.carrossel-slide');
+        const indicadores = document.querySelectorAll('.indicador');
+        let currentIndex = 0;
+        let intervalo;
+
+        function mudarSlide(novoIndex) {
+            slides.forEach(slide => slide.classList.remove('ativo'));
+            indicadores.forEach(ind => ind.classList.remove('ativo'));
+            
+            if (novoIndex < 0) novoIndex = slides.length - 1;
+            if (novoIndex >= slides.length) novoIndex = 0;
+            
+            slides[novoIndex].classList.add('ativo');
+            indicadores[novoIndex].classList.add('ativo');
+            currentIndex = novoIndex;
+        }
+
+        function iniciarAutoPlay() {
+            clearInterval(intervalo);
+            intervalo = setInterval(() => {
+                mudarSlide(currentIndex + 1);
+            }, 5000);
+        }
+
+        // Eventos dos indicadores
+        indicadores.forEach((indicador, index) => {
+            indicador.addEventListener('click', () => {
+                mudarSlide(index);
+                iniciarAutoPlay();
+            });
+        });
+
+        // Iniciar
+        iniciarAutoPlay();
+    </script>
+</body>
+</html>

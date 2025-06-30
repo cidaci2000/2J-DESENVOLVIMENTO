@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneios de Jiu-Jitsu Brasileiro | BJJ</title>
+    <link rel="stylesheet" href="stylemobile2.css">
+    
+  
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="logo">TORNEIOS <span>BJJ</span></div>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1 class="titulo-secao">Melhores KIMONOS do Brasil</h1>
+        
+        <section class="torneios-grid">
+            <article class="torneio-card">
+                <img class="torneio-imagem" src="ki1.jpeg" alt=" ">
+                <div class="torneio-conteudo">
+                    <h2 class="torneio-titulo">KIMONO DE JIU JITSU</h2>
+                    <div class="torneio-info">
+                        <span>PRETO</span>
+                        
+                    </div>
+                    <button class="botao-inscricao">INSCREVA-SE</button>
+                </div>
+            </article>
+            
+            <article class="torneio-card">
+                <img class="torneio-imagem" src="ki1.webp" alt="">
+                <div class="torneio-conteudo">
+                    <h2 class="torneio-titulo">KIMONO DE JIU JITSU</h2>
+                    <div class="torneio-info">
+                        <span>BRANCO</span>
+                        
+                    </div>
+                    <button class="botao-inscricao">INSCREVA-SE</button>
+                </div>
+            </article>
+            
+            <article class="torneio-card">
+                <img class="torneio-imagem" src="ki2.webp" alt="Torneio de Jiu-Jitsu">
+                <div class="torneio-conteudo">
+                    <h2 class="torneio-titulo">KIMONO DE JIU JITSU</h2>
+                    <div class="torneio-info">
+                        <span>BRANCO</span>
+                        
+                    </div>
+                    <button class="botao-inscricao">INSCREVA-SE</button>
+                </div>
+            </article>
+            
+            <article class="torneio-card">
+                <img class="torneio-imagem" src="ki3.webp" alt="Campeonato de Jiu-Jitsu">
+                <div class="torneio-conteudo">
+                    <h2 class="torneio-titulo">KIMONO DE JIU JITSU</h2>
+                    <div class="torneio-info">
+                        <span>BRANCO</span>
+                        
+                    </div>
+                    <button class="botao-inscricao">INSCREVA-SE</button>
+                </div>
+            </article>
+            
+           
+        </section>
+    </main>
+    
+    <footer class="rodape">
+        <h3 class="rodape-titulo">Dúvidas ou informações?</h3>
+        <div class="redes-sociais">
+            <a href="#" class="social-link">
+                <i>📱</i> Facebook
+            </a>
+            <a href="#" class="social-link">
+                <i>💬</i> Twitter
+            </a>
+            <a href="#" class="social-link">
+                <i>📸</i> Instagram
+            </a>
+        </div>
+        <p class="copyright">© 2025 Torneios BJJ. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script>
+        // Menu mobile toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+        
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        const menuLinks = document.querySelectorAll('.menu a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+            });
+        });
+        
+        // Animação para os cards
+        const cards = document.querySelectorAll('.torneio-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 200 + (index * 100));
+        });
+    </script>
+</body>
+</html>

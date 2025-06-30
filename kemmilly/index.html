@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polylac - Flores Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis e Reset */
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --secondary: #E91E63;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --text: #333;
+            --accent: #FFC107;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9fbf8;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #d81b60;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:not(.login-btn):hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a:not(.login-btn)::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:not(.login-btn):hover::after {
+            width: 100%;
+        }
+        
+        .login-btn {
+            background: var(--primary);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+        }
+        
+        .login-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Carrossel */
+        .carrossel {
+            position: relative;
+            margin-top: 20px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 500px;
+        }
+        
+        .carrossel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        
+        .carrossel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .carrossel-imagem {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .slide-overlay h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .slide-overlay p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        
+        .carrossel-indicadores {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .indicador {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicador.ativo {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        /* Seção de Produtos */
+        .produtos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 10px auto 0;
+        }
+        
+        .produto-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .produto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .produto-imagem {
+            height: 280px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .produto-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .produto-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .produto-descricao {
+            margin-bottom: 15px;
+            flex-grow: 1;
+            color: var(--text);
+        }
+        
+        .produto-preco {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 10px 0;
+        }
+        
+        .botao-comprar {
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+        
+        .botao-comprar:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(rgba(76, 175, 80, 0.9), rgba(76, 175, 80, 0.9)), url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            padding: 15px 30px;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background: #ffb300;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .carrossel {
+                height: 400px;
+            }
+            
+            .slide-overlay h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px 0;
+                gap: 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .carrossel {
+                height: 350px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .carrossel {
+                height: 250px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .slide-overlay h2 {
+                font-size: 1.8rem;
+            }
+            
+            .slide-overlay p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .produto-card {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .produto-card:nth-child(1) { animation-delay: 0.1s; }
+        .produto-card:nth-child(2) { animation-delay: 0.2s; }
+        .produto-card:nth-child(3) { animation-delay: 0.3s; }
+        .produto-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Efeitos de scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="https://i.ibb.co/W2Nqj5T/flower-logo.png" alt="Exótica">
+                    <div class="logo-text">Exótica</div>
+                </a>
+               
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+               
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#produtos"><i class="fas fa-shopping-bag"></i> Produtos</a></li>
+                    <li><a href="#"><i class="fas fa-seedling"></i> Origens</a></li>
+                    <li><a href="#" class="login-btn"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Seção do Carrossel -->
+        <section class="carrossel">
+            <div class="carrossel-container" id="carrosselContainer">
+                <!-- Slide 1 -->
+                <div class="carrossel-slide ativo">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="carrossel-imagem" alt="Bouquet de rosas">
+                    <div class="slide-overlay">
+                        <h2>Flores Frescas & Encantadoras</h2>
+                        <p>Descubra nossa coleção premium de flores cuidadosamente selecionadas</p>
+                        <a href="#produtos" class="btn">Comprar Agora</a>
+                    </div>
+                </div>
+               
+                <!-- Slide 2 -->
+                <div class="carrossel-slide">
+                    <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="carrossel-imagem" alt="Arranjo floral">
+                    <div class="slide-overlay">
+                        <h2>Presentes Especiais</h2>
+                        <p>Surpreenda quem você ama com nossos arranjos exclusivos</p>
+                        <a href="#produtos" class="btn btn-secondary">Ver Coleção</a>
+                    </div>
+                </div>
+               
+                <!-- Slide 3 -->
+                <div class="carrossel-slide">
+                    <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="carrossel-imagem" alt="Flores exóticas">
+                    <div class="slide-overlay">
+                        <h2>Plantas & Flores Exóticas</h2>
+                        <p>Espécies raras e belas para decorar seu espaço</p>
+                        <a href="#produtos" class="btn">Explorar</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicadores -->
+            <div class="carrossel-indicadores">
+                <div class="indicador ativo"></div>
+                <div class="indicador"></div>
+                <div class="indicador"></div>
+            </div>
+        </section>
+
+        <!-- Seção de Produtos -->
+        <div class="section-title" id="produtos">
+            <h2>Nossas Flores</h2>
+        </div>
+        
+        <section class="container">
+            <div class="produtos-container">
+                <!-- Card 1 -->
+                <article class="produto-card">
+                    <img src="4.jpg" class="produto-imagem" alt="Bouquet de Rosas">
+                    <div class="produto-info">
+                        <h3>Bouquet de Rosas Vermelhas</h3>
+                        <p class="produto-descricao">12 rosas vermelhas premium com folhagem decorativa. Perfeito para presentes românticos.</p>
+                        <p class="produto-preco">R$ 129,90</p>
+                        <a href="#" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="produto-card">
+                    <img src="3.jpg" class="produto-imagem" alt="Orquídea">
+                    <div class="produto-info">
+                        <h3>Orquídea Phalaenopsis</h3>
+                        <p class="produto-descricao">Elegante orquídea branca em vaso decorativo. Floresce por meses e decora qualquer ambiente.</p>
+                        <p class="produto-preco">R$ 89,90</p>
+                        <a href="#" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="produto-card">
+                    <img src="2.jpg" class="produto-imagem" alt="Arranjo de Girassóis">
+                    <div class="produto-info">
+                        <h3>Arranjo de Girassóis</h3>
+                        <p class="produto-descricao">Buquê vibrante com 5 girassóis frescos e folhagem complementar. Alegria em forma de flor.</p>
+                        <p class="produto-preco">R$ 79,90</p>
+                        <a href="#" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="produto-card">
+                    <img src="1.jpg" class="produto-imagem" alt="Cesta de Flores">
+                    <div class="produto-info">
+                        <h3>Cesta de Flores do Campo</h3>
+                        <p class="produto-descricao">Seleção colorida de flores campestres em cesta de vime. Ideal para decoração de interiores.</p>
+                        <p class="produto-preco">R$ 149,90</p>
+                        <a href="#" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+                <!-- Card 3 -->
+                <article class="produto-card">
+                    <img src="2.jpg" class="produto-imagem" alt="Arranjo de Girassóis">
+                    <div class="produto-info">
+                        <h3>Arranjo de Girassóis</h3>
+                        <p class="produto-descricao">Buquê vibrante com 5 girassóis frescos e folhagem complementar. Alegria em forma de flor.</p>
+                        <p class="produto-preco">R$ 79,90</p>
+                        <a href="#" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="produto-card">
+                    <img src="1.jpg" class="produto-imagem" alt="Cesta de Flores">
+                    <div class="produto-info">
+                        <h3>Cesta de Flores do Campo</h3>
+                        <p class="produto-descricao">Seleção colorida de flores campestres em cesta de vime. Ideal para decoração de interiores.</p>
+                        <p class="produto-preco">R$ 149,90</p>
+                        <a href="#" class="botao-comprar">Comprar</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Fique por Dentro das Novidades</h2>
+                <p>Inscreva-se para receber promoções exclusivas e dicas de cuidados com suas plantas</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Digite seu melhor email" required>
+                    <button type="submit">Inscrever-se</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sobre a Polylac</h3>
+                    <p>Especialistas em flores frescas e arranjos exclusivos. Nossa missão é levar beleza e alegria para sua vida através das flores.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#">Origens</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column contact-info">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua das Flores, 123 - Jardim Botânico, Cascavel - PR</p>
+                    <p><i class="fas fa-phone"></i> (45) 99999-9999</p>
+                    <p><i class="fas fa-envelope"></i> contato@polylac.com.br</p>
+                    <p><i class="fas fa-clock"></i> Seg-Sex: 9h-19h | Sáb: 9h-14h</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Formas de Pagamento</h3>
+                    <p>Aceitamos todas as principais formas de pagamento:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+                        <i class="fab fa-cc-visa fa-2x"></i>
+                        <i class="fab fa-cc-mastercard fa-2x"></i>
+                        <i class="fab fa-cc-amex fa-2x"></i>
+                        <i class="fab fa-cc-paypal fa-2x"></i>
+                        <i class="fas fa-barcode fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Exótica - Flores Premium. Todos os direitos reservados.</p>
+                <p>CNPJ: 12.345.678/0001-00 | As imagens são meramente ilustrativas</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+        
+        // Controle do Carrossel
+        const carrosselContainer = document.getElementById('carrosselContainer');
+        const slides = document.querySelectorAll('.carrossel-slide');
+        const indicadores = document.querySelectorAll('.indicador');
+        let currentIndex = 0;
+        let autoPlay = true;
+        let intervalo = 5000; // 5 segundos
+
+        // Função para mudar slide
+        function mudarSlide(novoIndex) {
+            if (novoIndex < 0) novoIndex = slides.length - 1;
+            if (novoIndex >= slides.length) novoIndex = 0;
+
+            carrosselContainer.style.transform = `translateX(-${novoIndex * 100}%)`;
+            currentIndex = novoIndex;
+           
+            // Atualizar indicadores
+            indicadores.forEach(ind => ind.classList.remove('ativo'));
+            indicadores[currentIndex].classList.add('ativo');
+        }
+
+        // Auto-play
+        let intervaloID = setInterval(() => {
+            if(autoPlay) mudarSlide(currentIndex + 1);
+        }, intervalo);
+
+        // Eventos dos indicadores
+        indicadores.forEach((indicador, index) => {
+            indicador.addEventListener('click', () => {
+                mudarSlide(index);
+                // Resetar auto-play após interação
+                clearInterval(intervaloID);
+                intervaloID = setInterval(() => {
+                    if(autoPlay) mudarSlide(currentIndex + 1);
+                }, intervalo);
+            });
+        });
+
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') mudarSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight') mudarSlide(currentIndex + 1);
+        });
+        
+        // Pausar carrossel quando o mouse estiver sobre ele
+        const carrossel = document.querySelector('.carrossel');
+        carrossel.addEventListener('mouseenter', () => {
+            autoPlay = false;
+        });
+        
+        carrossel.addEventListener('mouseleave', () => {
+            autoPlay = true;
+        });
+        
+        // Validação do formulário de newsletter
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                if (emailInput.value) {
+                    alert('Obrigado por se inscrever! Em breve você receberá nossas novidades.');
+                    emailInput.value = '';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

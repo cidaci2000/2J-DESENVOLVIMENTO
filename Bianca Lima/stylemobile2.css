@@ -1,0 +1,295 @@
+:root {
+    --primary: #2c3e50;
+    --secondary: #e74c3c;
+    --light: #ecf0f1;
+    --dark: #1a252f;
+    --gray: #7f8c8d;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+.cabecalho {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--secondary);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.menu li a:hover,
+.menu li a:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary);
+    transition: var(--transition);
+}
+
+.menu li a:hover::after {
+    width: 100%;
+}
+
+/* Main Content */
+main {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.titulo-secao {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.titulo-secao::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--secondary);
+    border-radius: 2px;
+}
+
+/* Grid de Torneios */
+.torneios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.torneio-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.torneio-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.torneio-imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--secondary);
+}
+
+.torneio-conteudo {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.torneio-titulo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.torneio-info {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.torneio-info i {
+    margin-right: 0.3rem;
+    color: var(--secondary);
+}
+
+.botao-inscricao {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+.botao-inscricao:hover,
+.botao-inscricao:focus {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.rodape {
+    background: var(--dark);
+    color: white;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.rodape-titulo {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--secondary);
+}
+
+.copyright {
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: var(--transition);
+    }
+    
+    .menu.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    
+    .torneios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .cabecalho {
+        padding: 1rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .titulo-secao {
+        font-size: 1.8rem;
+    }
+    
+    .torneios-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+    
+    .redes-sociais {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}

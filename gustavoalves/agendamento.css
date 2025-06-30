@@ -1,0 +1,57 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+body {
+    background-image: url("fundo_estacionamento.png");
+    background-size: cover; 
+    background-position: center;
+  }
+.container {
+    background-color: rgb(66, 81, 89);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #570997;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.confirmation {
+    margin-top: 20px;
+    text-align: center;
+    color: #000000;
+    font-size: 16px;
+}

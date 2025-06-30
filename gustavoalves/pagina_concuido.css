@@ -1,0 +1,14 @@
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+body {
+    background-image: url("fundo_estacionamento.png");
+    background-size: cover; 
+    background-position: center;
+}

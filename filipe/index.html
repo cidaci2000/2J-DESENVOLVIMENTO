@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Filipe Figo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#6366f1',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .profile-img {
+            border: 5px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-badge {
+            transition: all 0.2s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        #contact-form input,
+        #contact-form textarea {
+            transition: all 0.3s ease;
+        }
+        
+        #contact-form input:focus,
+        #contact-form textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-poppins">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold">
+                    <span class="text-primary">Filipe</span>
+                    <span class="text-secondary">Figo</span>
+                </a>
+                
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#inicio" class="nav-link text-gray-600 hover:text-primary transition">Início</a></li>
+                        <li><a href="#sobre" class="nav-link text-gray-600 hover:text-primary transition">Sobre</a></li>
+                        <li><a href="#projetos" class="nav-link text-gray-600 hover:text-primary transition">Projetos</a></li>
+                        <li><a href="#contato" class="nav-link text-gray-600 hover:text-primary transition">Contato</a></li>
+                    </ul>
+                </nav>
+                
+                <button class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="py-16 md:py-24 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight mb-4">
+                    Olá, eu sou <span class="text-primary">Filipe Figo</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-6">
+                    Desenvolvedor C# e especialista em Python para IA, Machine Learning e Deep Learning.
+                </p>
+                <p class="text-gray-600 mb-8 max-w-lg">
+                    Transformo ideias em soluções digitais com código limpo, boas práticas e foco em resultados.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#contato" class="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition shadow-md inline-block">
+                        Entre em contato
+                    </a>
+                    <a href="#projetos" class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-medium transition inline-block">
+                        Ver projetos
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="bg-white p-2 rounded-full shadow-xl">
+                        <img src="assets/images/perfil.jpg" 
+                             alt="Foto de perfil de Filipe" 
+                             class="w-64 h-64 rounded-full object-cover profile-img">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-white rounded-full p-3 shadow-lg">
+                        <div class="bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center">
+                            <span class="text-xl font-bold">5+</span>
+                        </div>
+                        <div class="absolute top-0 left-0 w-full h-full rounded-full border-4 border-primary animate-ping opacity-20"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Sobre <span class="text-primary">mim</span>
+            </h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Conheça um pouco mais sobre minha jornada, habilidades e paixões
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="bg-blue-100 p-2 rounded-full">
+                        <img src="assets/images/perfil.jpg" 
+                             alt="Minha foto" 
+                             class="w-48 h-48 rounded-full object-cover object-top">
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Olá! Meu nome é Filipe Figo. Sou desenvolvedor com foco em C# e Python, especializado em desenvolvimento de aplicações e soluções de Inteligência Artificial.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Minha jornada na programação começou há 5 anos, e desde então venho me dedicando a criar soluções inovadoras. Tenho experiência com .NET, MAUI, PyTorch e desenvolvimento web frontend.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Quando não estou codando, gosto de explorar mecânica e entender como as coisas funcionam. Acredito que esse interesse me ajuda a resolver problemas complexos de forma criativa.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Minhas Habilidades</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">C#</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">.NET</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">Python</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">PyTorch</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">HTML/CSS</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">JavaScript</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">Machine Learning</span>
+                            <span class="skill-badge bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projetos" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Meus <span class="text-primary">Projetos</span>
+            </h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Conheça alguns dos projetos que desenvolvi com paixão e dedicação
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="p-6 flex-1">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-blue-500 text-white rounded-lg p-3 mr-4">
+                                <i class="fas fa-brain text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">FluxuMente</h3>
+                                <div class="flex items-center mt-1">
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Completo</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-4">
+                            Interface (UI) para consumo de IAs de texto do Ollama, proporcionando experiência simplificada e eficiente. Permite interagir com modelos de IA offline após o download inicial.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">C#</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">.NET MAUI</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Clean Architecture</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Ollama API</span>
+                        </div>
+                        
+                        <div class="mt-auto">
+                            <a href="https://github.com/filipemacarini/fluxumente" 
+                               class="text-primary font-medium hover:text-blue-700 transition inline-flex items-center">
+                                Ver no GitHub <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="p-6 flex-1">
+                        <div class="flex items-start mb-4">
+                            <div class="bg-purple-500 text-white rounded-lg p-3 mr-4">
+                                <i class="fas fa-chart-line text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">Gestor Financeiro</h3>
+                                <div class="flex items-center mt-1">
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Em desenvolvimento</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-4">
+                            Sistema para gestão financeira empresarial com gerenciador de entradas, painel de estatísticas e bloco de notas inteligente. Desenvolvido para atender necessidades específicas de negócios familiares.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">C#</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">.NET MAUI</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">SQLite</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Chart.js</span>
+                        </div>
+                        
+                        <div class="mt-auto">
+                            <a href="https://github.com/filipemacarini/projeto-gestor-empresarial" 
+                               class="text-primary font-medium hover:text-blue-700 transition inline-flex items-center">
+                                Ver no GitHub <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">
+                Entre em <span class="text-primary">contato</span>
+            </h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                Vamos conversar sobre seu projeto ou oportunidade de colaboração
+            </p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Nome</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Mensagem</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition shadow-md">
+                            Enviar mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="flex flex-col justify-center">
+                    <div class="bg-blue-50 rounded-xl p-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-6">Informações de contato</h3>
+                        
+                        <div class="space-y-5">
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-lg p-3 mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Email</h4>
+                                    <p class="text-gray-600">filipe@exemplo.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-lg p-3 mr-4">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">GitHub</h4>
+                                    <p class="text-gray-600">github.com/filipemacarini</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary text-white rounded-lg p-3 mr-4">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-700">LinkedIn</h4>
+                                    <p class="text-gray-600">linkedin.com/in/filipemacarini</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-4">Me encontre nas redes</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/filipemacarini" class="bg-gray-200 hover:bg-primary text-gray-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.instagram.com/filipemacarini/" class="bg-gray-200 hover:bg-pink-500 text-gray-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-blue-700 text-gray-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-blue-500 text-gray-700 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <a href="#" class="text-2xl font-bold">
+                        <span class="text-primary">Filipe</span>
+                        <span class="text-secondary">Figo</span>
+                    </a>
+                    <p class="text-gray-400 mt-4 max-w-xs">
+                        Desenvolvedor especializado em C# e Python para IA, transformando ideias em soluções digitais inovadoras.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Links rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#inicio" class="text-gray-400 hover:text-white transition">Início</a></li>
+                        <li><a href="#sobre" class="text-gray-400 hover:text-white transition">Sobre mim</a></li>
+                        <li><a href="#projetos" class="text-gray-400 hover:text-white transition">Projetos</a></li>
+                        <li><a href="#contato" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Tecnologias</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">C#</span>
+                        <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">.NET</span>
+                        <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="bg-blue-900 text-blue-200 px-3 py-1 rounded-full text-sm">ML/DL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>© 2023 Filipe Figo. Todos os direitos reservados.</p>
+                <p class="mt-2">Desenvolvido com ❤️ e muita cafeína</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Por favor, preencha todos os campos');
+                return;
+            }
+            
+            // Show success message
+            alert(`Obrigado, ${name}! Sua mensagem foi enviada com sucesso. Entrarei em contato em breve.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('button[class*="md:hidden"]');
+        const navMenu = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+            navMenu.classList.toggle('block');
+            navMenu.classList.toggle('absolute');
+            navMenu.classList.toggle('top-16');
+            navMenu.classList.toggle('left-0');
+            navMenu.classList.toggle('w-full');
+            navMenu.classList.toggle('bg-white');
+            navMenu.classList.toggle('p-6');
+            navMenu.classList.toggle('shadow-lg');
+        });
+    </script>
+</body>
+</html>

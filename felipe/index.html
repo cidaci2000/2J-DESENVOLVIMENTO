@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #504242;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .produto {
+            background-color: white;
+            margin: 15px;
+            padding: 20px;
+            width: 280px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .produto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .produto h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-top: 15px;
+        }
+        .produto p {
+            color: #666;
+            font-size: 1rem;
+            margin: 10px 0;
+        }
+        .produto .preco {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d8b2d;
+        }
+        .produto .descricao {
+            font-size: 0.9rem;
+            color: #888;
+            margin: 10px 0;
+        }
+        .produto .botao-comprar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .produto .botao-comprar:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        footer p {
+            margin: 0;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .produto {
+                width: 220px;
+            }
+
+            .produto img {
+                height: 180px;
+            }
+
+            .produto h3 {
+                font-size: 1.3rem;
+            }
+
+            .produto .preco {
+                font-size: 1.3rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            .produto {
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+            }
+
+            .produto img {
+                height: 150px;
+            }
+
+            .produto h3 {
+                font-size: 1.2rem;
+            }
+
+            .produto .preco {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                padding: 5px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SITE MALOCAGENS BIGODISTICAS</h1>
+        <p>Melhor mercado do mercado que é digital que digita!</p>
+    </header>
+
+    <nav>
+        <a href='#'>Inicio</a>
+        <a href="https://www.spinwiz1.com/pt-br/">Tigrinho</a>
+        <a href="https://play.google.com/store/apps/details/Blue_Whale_2019?id=com.iextend.blue.whale&hl=pt_BR&pli=1">Baleia Azul</a>
+        <a href="https://www.youtube.com/watch?v=QojYClJwEas">Contato</a>
+        <a href="https://uploads.diariodopara.com.br/2022/09/KID1_00771322_0_-GOu9sj.jpeg">???</a>
+        <a href='#'>Login</a>
+    </nav>
+
+    <div class="container">
+        <div class="produto">
+            <img src="https://abam.com.br/wp-content/uploads/2022/07/Mandioca-1.jpeg" alt="mandioca">
+            <h3>MANCHOCA</h3>
+            <p class="descricao">Produto de alta qualidade, ideal para o seu dia a dia. Aproveite nossas ofertas!</p>
+            <p class="preco">R$ sim</p>
+            <button class="botao-comprar">Chave pix 45999151078</button>
+        </div>
+
+        <div class="produto">
+            <img src="https://i.ytimg.com/vi/u1J-WSZsJXQ/maxresdefault.jpg" alt="strogonoff">
+            <h3>ESTAGA OS BOFFE</h3>
+            <p class="descricao">Este produto oferece o melhor desempenho e durabilidade. Não perca!</p>
+            <p class="preco">R$ um pouco mais</p>
+            <button class="botao-comprar">Chave pix 45999151078</button>
+        </div>
+
+        <div class="produto">
+            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/32132609-92d4-4ea0-b743-03763c9fefdd/dfgte25-d03e75f9-0e43-4b36-a532-130912c49ca6.jpg/v1/fill/w_756,h_1058,q_70,strp/snow_fox_paladin_by_ferinfloofer_dfgte25-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTY1MyIsInBhdGgiOiJcL2ZcLzMyMTMyNjA5LTkyZDQtNGVhMC1iNzQzLTAzNzYzYzlmZWZkZFwvZGZndGUyNS1kMDNlNzVmOS0wZTQzLTRiMzYtYTUzMi0xMzA5MTJjNDljYTYuanBnIiwid2lkdGgiOiI8PTExODEifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.j0fw8S51FSQ2vrUAoraJV6ZctYTYahGodFRt57CkTMM" alt="paladino">
+            <h3>PALADINOX FURRY 3D</h3>
+            <p class="descricao">Inovação e tecnologia com um preço acessível. Ideal para quem busca qualidade!</p>
+            <p class="preco">R$ quero um pouco </p>
+            <button class="botao-comprar">Chave pix 45999151078</button>
+        </div>
