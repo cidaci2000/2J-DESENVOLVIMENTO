@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoBlack - Carros à Venda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#btnCatalogo').addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector('#catalogo').scrollIntoView({behavior: 'smooth'});
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">AutoBlack</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <section id="home">
+    <div class="content container">
+      <h1>Seu próximo carro está aqui</h1>
+      <p>Encontre veículos de qualidade com o melhor preço do mercado.</p>
+      <button id="btnCatalogo" class="btn">Ver Catálogo</button>
+    </div>
+  </section>
+  <section id="catalogo">
+    <h2>Catálogo de Carros</h2>
+    <div class="car-grid container">
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=400&q=80" alt="Carro 1" />
+        <div class="car-info">
+          <h3>Ford Mustang GT</h3>
+          <p>Ano: 2021</p>
+          <p class="price">R$ 350.000</p>
+          <button>Detalhes</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1511391406860-3b9ed3c25569?auto=format&fit=crop&w=400&q=80" alt="Carro 2" />
+        <div class="car-info">
+          <h3>Chevrolet Camaro</h3>
+          <p>Ano: 2020</p>
+          <p class="price">R$ 320.000</p>
+          <button>Detalhes</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=400&q=80" alt="Carro 3" />
+        <div class="car-info">
+          <h3>Audi R8</h3>
+          <p>Ano: 2022</p>
+          <p class="price">R$ 950.000</p>
+          <button>Detalhes</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=400&q=80" alt="Carro 4" />
+        <div class="car-info">
+          <h3>BMW M4</h3>
+          <p>Ano: 2021</p>
+          <p class="price">R$ 420.000</p>
+          <button>Detalhes</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80" alt="Carro 5" />
+        <div class="car-info">
+          <h3>Mercedes AMG GT</h3>
+          <p>Ano: 2022</p>
+          <p class="price">R$ 880.000</p>
+          <button>Detalhes</button>
+        </div>
+      </div>
+      <div class="car-card">
+        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=400&q=80" alt="Carro 6" />
+        <div class="car-info">
+          <h3>Tesla Model S</h3>
+          <p>Ano: 2023</p>
+          <p class="price">R$ 750.000</p>
+          <button>Detalhes</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="sobre">
+    <div class="container">
+      <p>
+        A AutoBlack é uma empresa dedicada a oferecer veículos premium com qualidade e confiança. 
+        Com anos de experiência no mercado, nosso compromisso é garantir a melhor experiência para nossos clientes, 
+        unindo tecnologia, segurança e design em cada carro disponível para venda.
+      </p>
+    </div>
+  </section>
+  <section id="contato">
+    <h2>Contato</h2>
+    <form>
+      <input type="text" name="nome" placeholder="Nome" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="tel" name="telefone" placeholder="Telefone" required />
+      <textarea name="mensagem" rows="5" placeholder="Mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="info container">
+      <p>Telefone: (11) 99999-9999</p>
+      <p>Email: contato@autoblack.com</p>
+      <p>Endereço: Rua Exemplo, 123 - São Paulo, SP</p>
+    </div>
+  </section>
+  <footer>
+    <div>© 2025 AutoBlack. Todos os direitos reservados.</div>
+    <div class="socials">
+      <a href="#" aria-label="Facebook" title="Facebook" target="_blank" rel="noopener">📘</a>
+      <a href="#" aria-label="Instagram" title="Instagram" target="_blank" rel="noopener">📸</a>
+      <a href="#" aria-label="Twitter" title="Twitter" target="_blank" rel="noopener">🐦</a>
+    </div>
+  </footer>
+</body>
+</html>
