@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+body {
+    background: black;
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+}
+
+section {
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.text__home {
+    font-size: 150px;
+    font-weight: bold;
+    color: #ff914D;
+    position: absolute;
+    top: 150px;
+    left: 120px;
+}
+
+.text__pag2 {
+    font-size: 100px;
+    font-weight: bold;
+    color: #ff914D;
+}
+
+.border__top {
+    background: #ff914D;
+    height: 10px;
+    width: 90px;
+    margin-top: 1rem;
+}
+
+.academia {
+    position: absolute;
+    top: 10px;
+}
+
+.foto__home {
+    position: absolute;
+    top: 10px;
+    left: 700px;
+    z-index: 1;
+}
+
+.seta__home {
+    opacity: 10%;
+    position: absolute;
+    top: -189px;
+    left: 730px;
+}
+
+.subtitulo {
+    position: absolute;
+    padding-top: 110px;
+    color: white;
+    font-size: 24px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.image-box {
+    position: relative;
+    cursor: pointer;
+    padding-top: 100px;
+    padding-left: 150px;
+}
+
+.image-box img {
+    width: 350px;
+    height: 350px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.image-box img:hover {
+    transform: scale(1.1);
+}
+
+.menu {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgb(0, 0, 0);
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 620px;
+    width: 1220px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.menu.active {
+    display: block;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.menu .close {
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: red;
+    cursor: pointer;
+    float: right;
+}
+.miguel_pag3{
+position: absolute;
+left: 10px;
+}
+.Personais__trainers{
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  padding-top: 100px;
+left: 920px;
+}
+.Personais__fernando{
+  padding-top: 30px;
+}
+.Personais__miguel{
+  padding-bottom: 30px;
+}
+.Personais__ronny{
+  padding-bottom: 30px;
+}
+.Personais__joao{
+  padding-bottom: 30px;
+}
+.borda{
+  background-color: #ff914D;
+  width: 150px;
+  height: 10px;
+  position: relative;
+  top: -60px;
+  left: 280px;
+}
+.borda2{
+  background-color: #ff914D;
+  width: 150px;
+  height: 10px;
+  position: relative;
+  top: -60px;
+  left: 280px;
+}
+.borda3{
+  background-color: #ff914D;
+  width: 150px;
+  height: 10px;
+  position: relative;
+  top: -60px;
+  left: 280px;
+}
+.borda4{
+  background-color: #ff914D;
+  width: 150px;
+  height: 10px;
+  position: relative;
+  top: -60px;
+  left: 280px;
+}
+.borda5{
+  background-color: #ff914D;
+  width: 150px;
+  height: 10px;
+  position: relative;
+  top: -60px;
+  left: 280px;
+}
+.text__pag3 {
+  font-size: 100px;
+  font-weight: bold;
+  color: #ff914D;
+}
+.text__pag4 {
+  font-size: 100px;
+  font-weight: bold;
+  color: #ff914D;
+}
+.text__pag5 {
+  font-size: 100px;
+  font-weight: bold;
+  color: #ff914D;
+}.texto_menu{
+  font-family: Montserrat;
+  font-size: 50px;
+  font-weight: bold;
+  color: #ff914D;
+}
+.imagem1{
+ display: inline-block;
+ padding-left: 20px;
+ padding-top: 20px;
+}
+.imagem2{
+  display: inline-block;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.imagem3{
+  display: inline-block;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.texto1{
+  color: #ffde59;
+  padding-top: 20px;
+  font-family: Montserrat;
+  font-size: 30px;
+}
+.texto1_1{
+  color: white;
+  padding-top: 20px;
+}
+.texto2{
+  color: #ffde59;
+  padding-top: 20px;
+  font-family: Montserrat;
+  font-size: 30px;
+}
+.texto2_2{
+  color: white;
+  padding-top: 20px;
+}
+.texto3{
+  color: #ffde59;
+  padding-top: 20px;
+  font-family: Montserrat;
+  font-size: 30px;
+}
+.texto3_3{
+  padding-top: 20px;
+  color: white;
+  font-size: 30px;
+}
+.subtitulo__pag5{
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+.fundo1{
+  background-color: white;
+  height: 150px;
+  width: 400px;
+  border-radius: 25px;
+  position: relative;
+  left: 300px;
+  top: 150px;
+}
+.fundo2{
+  background-color: white;
+  height: 150px;
+  width: 400px;
+  border-radius: 25px;
+  position: relative;
+  left: 900px;
+
+}
+.fundo3{
+  background-color: white;
+  height: 150px;
+  width: 400px;
+  border-radius: 25px;
+  position: relative;
+  left: 300px;
+  top: 150px;
+}
+.fundo4{
+  background-color: white;
+  height: 150px;
+  width: 400px;
+  border-radius: 25px;
+  position: relative;
+  left: 900px;
+}
+.nome__aluno1{
+  color: black;
+  font-weight: bold;
+  position: absolute;
+  left: 420px;
+  top: 3480px;
+  z-index: 1;
+}
+.nome__aluno2{
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  position: absolute;
+  left: 1000px;
+  top: 3480px;
+  z-index: 1;
+}
+.nome__aluno3{
+  color: black;
+  font-weight: bold;
+  position: absolute;
+  top: 3770px;
+  left: 420px;
+  z-index: 1;
+}
+.nome__aluno4{
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  position: absolute;
+  left: 1000px;
+  top: 3770px;
+  z-index: 1;
+}
+.info1{
+  color: white;
+  text-align: left;
+  font-size: 24px;
+  padding-top: 30px;
+}
+.info2{
+  color: white;
+  text-align: left;
+  font-size: 24px;
+  padding-top: 30px;
+}
+.horario1{
+  color: white;
+  text-align: left;
+  font-size: 24px;
+  padding-top: 50px;
+}
+.horario2{
+  color: white;
+  text-align: left;
+  font-size: 24px;
+  padding-top: 40px;
+}
+.info3{
+  color: white;
+font-size: 24px;
+padding-top: 30px;
+position: absolute;
+left: 500px;
+top: 340px;
+}
+.info4{
+  color: white;
+font-size: 24px;
+position: absolute;
+left: 500px;
+top: 420px;
+}
+.info5{
+  color: white;
+font-size: 24px;
+padding-top: 30px;
+position: absolute;
+left: 900px;
+top: 340px;
+}
+.info6{
+  color: white;
+font-size: 24px;
+position: absolute;
+left: 900px;
+top: 420px;
+}
+.info7{
+  color: white;
+font-size: 24px;
+padding-top: 30px;
+position: absolute;
+left: 500px;
+top: 480px;
+}
+.info8{
+  color: white;
+font-size: 24px;
+position: absolute;
+left: 500px;
+top: 540px;
+}
+.info9{
+  color: white;
+font-size: 24px;
+padding-top: 30px;
+position: absolute;
+left: 900px;
+top: 480px;
+}
+.info10{
+  color: white;
+font-size: 24px;
+position: absolute;
+left: 900px;
+top: 540px;
+}
+.imagem_menu{
+  position: absolute;
+  top: 50px;
+  left: 600px;
+object-fit: contain;
+z-index: -1;
+width: 450px !important;
+height: auto;
+display: block;
+}
+.aluno1{
+    object-fit: cover;
+    z-index: 1;
+    width: 100px;   
+    height: 100px;    
+    border-radius: 50%; 
+    display: block;
+    position: absolute;
+    left: 370px;
+    top: 3470px;
+}
+.aluno2{
+    object-fit: cover;
+    z-index: 1;
+    width: 100px;   
+    height: 100px;    
+    border-radius: 50%; 
+    display: block;
+    position: absolute;
+    left: 950px;
+    top: 3470px;
+}
+.aluno3{
+  object-fit: cover;
+  z-index: 1;
+  width: 100px;   
+  height: 100px;    
+  border-radius: 50%; 
+  display: block;
+  position: absolute;
+  left: 370px;
+  top: 3760px;
+}
+.aluno4{
+    object-fit: cover;
+    z-index: 1;
+    width: 100px;   
+    height: 100px;    
+    border-radius: 50%; 
+    display: block;
+    position: absolute;
+    left: 950px;
+    top: 3760px;
+}
+.descricao1{
+  position: relative;
+  left: 60px;
+padding-top: 10px;
+font-weight: none;
+color: black;
+}
+.descricao2{
+  position: relative;
+  left: 60px;
+padding-top: 10px;
+font-weight: none;
+color: black;
+}
+.descricao3{
+  position: relative;
+  left: 60px;
+padding-top: 20px;
+font-weight: none;
+color: black;
+}
+.descricao4{
+  position: relative;
+  left: 60px;
+padding-top: 20px;
+font-weight: none;
+color: black;
+}
+label{
+  color: white;
+  position: relative;
+  left: -450px;
+}
+h3{
+  color: white;
+}
+.seg__qua1{
+  position: relative;
+  left: 10px;
+  background-color: red;
+  width: 300px;
+}
+.qui__dom1{
+  position: relative;
+  left: 920px;
+  top: -300px;
+  background-color: red;
+  width: 300px;
+}
+.qui__dom{
+  position: relative;
+  left: 450px;
+  top: -300px;
+}
+h1{
+  color: white;
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no">
+    <title>STORM GYM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section>
+        <div class="text__home">
+            <div class="border__top"></div>
+            STORM <p class="academia">GYM</p>
+            <p class="subtitulo">Uma tempestade de determinação</p>
+            <div class="foto__home">
+                <img src="foto__home.png" height="350px" alt="">
+            </div>
+            <div class="seta__home">
+                <img src="seta.png" height="500px" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="segunda__pagina">
+        <div class="text__pag2">BEM VINDOS!</div>
+        <div class="container">
+            <div class="image-box" style="position: relative; left: -150px;" onclick="toggleMenu(event, 1)">
+                <img src="academia.png" alt="Imagem 1">
+                <div class="menu" id="menu1">
+                    <button class="close" onclick="closeMenu(1)">&times;</button>
+                    <ul>
+                      <li><img class="imagem_menu" src="imagem_menu.png" alt=""></li>
+                        <li><div class="texto_menu">INFORMAÇÕES</div></li>
+                        <li class="info1">Em qualquer duvida sobre <br>
+                           o seu plano e outras funcionalidades <br> da academia, entre em contato <br>
+                           conosco. </li>
+                        <li class="info2">O horário de funcionamento da<Br> academia e whatsapp:</li>
+                          <li class="horario1">SEG A SEX  das  5:00 as 22:00 </li>
+                          <li class="horario2">SAB E DOM das  5:00 as 14:00</li>
+                          <li class="info3">Fone:
+                            <li class="info4">(45)99999-9999</li>
+                          <li class="info5">Fone:
+                            <li class="info6">(45)99999-9999 </li>
+                          <li class="info7">Email Address:
+                            <li class="info8">hello@reallygreatsite.com</li>
+                          <li class="info9">Website:
+                          <li class="info10">www.reallygreatsite.com</li>
+                        
+                         </ul>
+                </div>
+            </div>
+
+            <div class="image-box" onclick="toggleMenu(event, 2)">
+                <img src="lista__treinos.png" alt="Imagem 2">
+                <div class="menu" id="menu2">
+                    <button class="close" onclick="closeMenu(2)">&times;</button>
+                    <ul>
+
+                      <h1>Agenda Semanal de Treino</h1>
+
+                      <div>
+                        <h3 class="seg__qua1">Segunda-feira - Cardio</h3>
+                        <label class="seg__qua"><input type="checkbox" onchange="check(this)"> Caminhada rápida – 30min</label><br>
+                        <label class="seg__qua"><input type="checkbox" onchange="check(this)"> Corrida leve – 20min</label>
+                      </div>
+                    
+                      <div>
+                        <h3  class="seg__qua1">Terça-feira - Peito + Tríceps</h3>
+                        <label class="seg__qua"><input type="checkbox" onchange="check(this)"> Flexão de braço – 3x15</label><br>
+                        <label class="seg__qua"><input type="checkbox" onchange="check(this)"> Tríceps banco – 3x12</label>
+                      </div>
+                    
+                      <div>
+                        <h3  class="seg__qua1">Quarta-feira - Perna</h3>
+                        <label class="seg__qua"><input type="checkbox" onchange="check(this)"> Agachamento livre – 4x12</label><br>
+                        <label class="seg__qua"><input type="checkbox" onchange="check(this)"> Afundo – 3x10 por perna</label>
+                      </div>
+                    
+                      <div>
+                        <h3 class="qui__dom1">Quinta-feira - Costas + Bíceps</h3>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Remada curvada – 3x10</label><br>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Rosca direta – 3x12</label>
+                      </div>
+                    
+                      <div>
+                        <h3 class="qui__dom1" >Sexta-feira - Abdômen + Core</h3>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Abdominal prancha – 3x30s</label><br>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Abdominal bicicleta – 3x20</label>
+                      </div>
+                    
+                      <div>
+                        <h3 class="qui__dom1">Sábado - Funcional Leve</h3>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Pular corda – 3x1min</label><br>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Burpees – 3x10</label>
+                      </div>
+                    
+                      <div>
+                        <h3 class="qui__dom1">Domingo - Descanso</h3>
+                        <label class="qui__dom"><input type="checkbox" onchange="check(this)"> Alongamento leve – 15min</label>
+                      </div>
+                    
+                    </ul>
+                </div>
+              </div>
+        </div>
+    </section>
+    <section>
+      <div class="text__pag3">Nossos Personais</div>
+      <img class="miguel_pag3" src="miguel.png" height="800px/" alt="">
+      <div class="Personais__trainers">
+      <div class="Personais__miguel">Miguel Calauto <br> (Musculação) <div class="borda"></div> </div>
+      <div class="Personais__ronny">Ronny Ferreira <br> (Musculação) <div class="borda2"></div> </div>
+      <div class="Personais__joao">João felisbino <br> (Jiu-jitsu) <div class="borda3"></div></div>
+      <div class="Personais__vitoria">Vitoria Camargo <br> (Jiu-jitsu) <div class="borda4"></div></div>
+      <div class="Personais__fernando">fernando Arconti <br> (Muay thay)<div class="borda5"></div> </div>
+      </div>
+    </section>
+    <section>
+      <div class="text__pag4">Nossos Serviços</div>
+      <div class="imagem1"><img src="musculacao.png" height="400px" alt="">
+      <div class="texto1"> Musculação
+        <div class="texto1_1">
+          Ajuda no fortalecimento<br>muscular e mobilidade
+        </div>
+      </div>
+      </div>
+      <div class="imagem2"><img src="Jiu.png" alt="">
+        <div class="texto2"> Jiu-jitsu
+          <div class="texto2_2">
+            Trabalha força e rendimento <br> cardiovascular 
+          </div>
+        </div>
+      </div>
+      <div class="imagem3"><img src="muay_thai.png" height="400px" alt="">
+        <div class="texto3"> Muay thai</div>
+          <div class="texto3_3">
+          Trabalha defesa e o sistema <br> cardiovascular
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="text__pag5">FeedBacks</div>
+      <div class="subtitulo__pag5">Veja o que nossos alunos acham </div>
+      <div class="fundo1"></div>
+
+      <div class="nome__aluno1">João Pedro <div class ="descricao1">Instrutores ótimos, super<br>
+        atenciosos e pacientes.</div></div>
+        
+      <div ><img class="aluno1" src="Joao.png"  alt=""></div>
+
+      
+     <div class="fundo2"></div>
+     <div class="nome__aluno2">Margarita Perez <div class="descricao2" style="font-size: 14px;">Infraestrutura ótima e ambiente<br> 
+      perfeito para dar o seu máximo <br>
+       no treino.</div></div>
+     <div ><img class="aluno2" src="Margarita.png"  alt=""></div>
+
+     <div class="fundo3"></div>
+     
+     <div class="nome__aluno3">Cia Rodriguez <div class="descricao3" style="font-size: 14px;">Os professores de jiu jitsu são
+      <br> ótimos e atenciosos. </div></div>
+     <div ><img class="aluno3" src="cia_rodrigues.png"  alt=""></div>
+     <div class="fundo4"></div>
+     
+     <div class="nome__aluno4">Pedro Fernando <div class="descricao4" style="font-size: 14px;">     Professor de Muay Thai tem uma <br> didática ótima, super recomendo.</div></div>
+     <div ><img class="aluno4" src="Pedro Fernando.png"  alt=""></div>
+
+
+    </section>
+
+    <script src="main.js"></script>
+</body>
+</html>
