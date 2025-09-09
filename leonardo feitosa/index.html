@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ViajaMundo - Sua agência de viagens</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset e estilos básicos */
+    :root {
+      --primary: #3498db;
+      --primary-dark: #2980b9;
+      --secondary: #e74c3c;
+      --secondary-dark: #c0392b;
+      --accent: #f39c12;
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --gray: #7f8c8d;
+      --success: #27ae60;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Cabeçalho */
+    header {
+      background: linear-gradient(135deg, var(--dark), var(--primary-dark));
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    header h1 i {
+      color: var(--accent);
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 1.5rem;
+      position: relative;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: width 0.3s;
+    }
+    
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+    
+    /* Seção Hero */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .botoes-hero {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .btn {
+      padding: 0.9rem 1.8rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-secondary:hover {
+      background-color: white;
+      color: var(--dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Conteúdo */
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--dark);
+      font-size: 2.2rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+    
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+    
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: var(--accent);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+    
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .card-content {
+      padding: 1.5rem;
+    }
+    
+    .card h4 {
+      color: var(--dark);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-price {
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    
+    .card-desc {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Calendário */
+    .calendar-container {
+      position: relative;
+      margin-top: 1rem;
+    }
+    
+    .calendar-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .calendar-btn:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .calendar-btn i {
+      transition: transform 0.3s;
+    }
+    
+    .calendar-btn.active i {
+      transform: rotate(180deg);
+    }
+    
+    .calendar-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s;
+    }
+    
+    .calendar-content {
+      background-color: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: slideUp 0.4s;
+    }
+    
+    .calendar-header {
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1.2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .calendar-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .calendar-body {
+      padding: 1.5rem;
+    }
+    
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-bottom: 1rem;
+    }
+    
+    .calendar-weekday {
+      text-align: center;
+      font-weight: bold;
+      color: var(--gray);
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+    }
+    
+    .calendar-day {
+      text-align: center;
+      padding: 0.7rem 0;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .calendar-day:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .calendar-day.available {
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+    }
+    
+    .calendar-day.available:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .calendar-day.unavailable {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .calendar-day.selected {
+      background-color: var(--accent);
+      color: white;
+    }
+    
+    .calendar-legend {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .legend-color {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+    }
+    
+    .legend-available {
+      background-color: var(--primary);
+    }
+    
+    .legend-selected {
+      background-color: var(--accent);
+    }
+    
+    .calendar-transport {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .transport-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .transport-airplane { color: var(--primary); }
+    .transport-bus { color: var(--secondary); }
+    
+    /* Pacotes */
+    #pacotes {
+      background-color: var(--light);
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    #pacotes p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: var(--gray);
+    }
+    
+    .pacotes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .pacote {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+    
+    .pacote:hover {
+      transform: translateY(-5px);
+    }
+    
+    .pacote i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .pacote h4 {
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+    }
+    
+    /* Formulário de contato */
+    .contato {
+      background: linear-gradient(to bottom, var(--light), white);
+      border-radius: 12px;
+    }
+    
+    .contato form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    
+    .contato label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    
+    .contato input,
+    .contato textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .contato input:focus,
+    .contato textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    }
+    
+    .contato textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .btn-form {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-form:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background-color: var(--dark);
+      color: white;
+      margin-top: 2rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    
+    .footer-section h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-section h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+    
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      margin-bottom: 0.8rem;
+      display: block;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section a:hover {
+      color: white;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+      
+      header h1 {
+        margin-bottom: 1rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      
+      nav ul li {
+        margin-left: 0;
+      }
+      
+      .hero h2 {
+        font-size: 2rem;
+      }
+      
+      .botoes-hero {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cards, .pacotes-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .content {
+        padding: 2rem 1rem;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-section h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .social-icons {
+        justify-content: center;
+      }
+      
+      .calendar-content {
+        width: 95%;
+      }
+    }
+    
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+    
+    /* Botão de voltar ao topo */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 99;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-globe-americas"></i> ViajaAoMundo</h1>
+    <nav>
+      <ul>
+        <li><a href="#destinos">Destinos</a></li>
+        <li><a href="#pacotes">Pacotes</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Viaje de Ônibus ou Avião para qualquer lugar do mundo!</h2>
+      <p>Descubra os melhores destinos com os preços mais incríveis do mercado</p>
+      <div class="botoes-hero">
+        <button class="btn btn-primary" onclick="mostrarMensagem()">
+          <i class="fas fa-comments"></i> Fale conosco
+        </button>
+        <button class="btn btn-secondary" onclick="verPacotes()">
+          <i class="fas fa-suitcase"></i> Ver Pacotes
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="destinos" class="content">
+    <h3 class="section-title">Destinos Populares</h3>
+    <div class="cards">
+      <!-- Card Paris -->
+      <div class="card animate">
+        <span class="card-badge">Mais Procurado</span>
+        <img class="card-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwCSdJYYYlBQeisKLytl0M_JCX_q7aUhbolQ&s" alt="Paris">
+        <div class="card-content">
+          <h4>Paris, França</h4>
+          <div class="card-price">A partir de R$ 3.500</div>
+          <p class="card-desc">A cidade do amor te espera com sua cultura, gastronomia e arquitetura deslumbrante.</p>
+          <div class="calendar-container">
+            <button class="calendar-btn" onclick="abrirCalendario('paris')">
+              Ver datas disponíveis <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card Rio de Janeiro -->
+      <div class="card animate delay-1">
+        <img class="card-img" src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Rio de Janeiro">
+        <div class="card-content">
+          <h4>Rio de Janeiro, Brasil</h4>
+          <div class="card-price">A partir de R$ 200</div>
+          <p class="card-desc">Desfrute das praias paradisíacas e da energia contagiante da Cidade Maravilhosa.</p>
+          <div class="calendar-container">
+            <button class="calendar-btn" onclick="abrirCalendario('rio')">
+              Ver datas disponíveis <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card Nova York -->
+      <div class="card animate delay-2">
+        <img class="card-img" src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Nova York">
+        <div class="card-content">
+          <h4>Nova York, EUA</h4>
+          <div class="card-price">A partir de R$ 4.200</div>
+          <p class="card-desc">A cidade que nunca dorme oferece cultura, compras e entretenimento de classe mundial.</p>
+          <div class="calendar-container">
+            <button class="calendar-btn" onclick="abrirCalendario('nova-york')">
+              Ver datas disponíveis <i class="fas fa-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal do Calendário -->
+  <div class="calendar-modal" id="calendarModal">
+    <div class="calendar-content">
+      <div class="calendar-header">
+        <h3 id="calendarTitle">Datas Disponíveis</h3>
+        <button class="calendar-close" onclick="fecharCalendario()">&times;</button>
+      </div>
+      <div class="calendar-body">
+        <div class="calendar-grid" id="weekdays">
+          <!-- Dias da semana serão inseridos via JavaScript -->
+        </div>
+        <div class="calendar-grid" id="calendarDays">
+          <!-- Dias do mês serão inseridos via JavaScript -->
+        </div>
+        
+        <div class="calendar-transport" id="calendarTransport">
+          <!-- Informações de transporte serão inseridas via JavaScript -->
+        </div>
+        
+        <div class="calendar-legend">
+          <div class="legend-item">
+            <div class="legend-color legend-available"></div>
+            <span>Disponível</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color legend-selected"></div>
+            <span>Selecionado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="pacotes" class="content">
+    <h3 class="section-title">Pacotes Especiais</h3>
+    <p>Consulte nossas ofertas personalizadas para grupos e famílias! Temos opções para todos os gostos e bolsos.</p>
+    
+    <div class="pacotes-grid">
+      <div class="pacote animate">
+        <i class="fas fa-users"></i>
+        <h4>Pacote Família</h4>
+        <p>Descontos especiais para famílias, com atividades para todas as idades.</p>
+      </div>
+      
+      <div class="pacote animate delay-1">
+        <i class="fas fa-heart"></i>
+        <h4>Lua de Mel</h4>
+        <p>Destinos românticos com experiências exclusivas para casais.</p>
+      </div>
+      
+      <div class="pacote animate delay-2">
+        <i class="fas fa-hiking"></i>
+        <h4>Aventura</h4>
+        <p>Para os amantes de adrenalina e contato com a natureza.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="content contato">
+    <h3 class="section-title">Entre em contato</h3>
+    <form onsubmit="enviarFormulario(event)">
+      <div class="form-group">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" placeholder="Digite seu nome completo" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Seu e-mail</label>
+        <input type="email" id="email" placeholder="seu@email.com" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="mensagem">Sua mensagem</label>
+        <textarea id="mensagem" placeholder="Como podemos ajudá-lo?" required></textarea>
+      </div>
+      
+      <button type="submit" class="btn-form">
+        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+      </button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Sobre nós</h4>
+        <p>A ViajaAoMundo é uma agência de viagens especializada em proporcionar experiências únicas e memoráveis para nossos clientes.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contato</h4>
+        <p><i class="fas fa-map-marker-alt"></i> Rua das Viagens, 123</p>
+        <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+        <p><i class="fas fa-envelope"></i> contato@viajaaomundo.com</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Redes sociais</h4>
+        <p>Nos acompanhe nas redes sociais</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 ViajaAoMundo. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Dados dos destinos
+    const destinos = {
+      'paris': {
+        title: 'Paris, França',
+        onibus: [10, 15, 22, 29],
+        aviao: [5, 12, 19, 26],
+        mes: 8, // Setembro (0-based index)
+        ano: 2025
+      },
+      'rio': {
+        title: 'Rio de Janeiro, Brasil',
+        onibus: [3, 10, 17, 24, 30],
+        aviao: [],
+        mes: 8,
+        ano: 2025
+      },
+      'nova-york': {
+        title: 'Nova York, EUA',
+        onibus: [],
+        aviao: [6, 13, 20, 27],
+        mes: 8,
+        ano: 2025
+      }
+    };
+
+    // Funções para os botões
+    function mostrarMensagem() {
+      alert("Entre em contato conosco pelo formulário abaixo! Nossa equipe terá prazer em ajudá-lo.");
+      document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function verPacotes() {
+      document.getElementById('pacotes').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function enviarFormulario(event) {
+      event.preventDefault();
+      alert("Obrigado por entrar em contato! Retornaremos em breve.");
+      event.target.reset();
+    }
+    
+    // Funções do calendário
+    let destinoAtual = null;
+    
+    function abrirCalendario(destino) {
+      destinoAtual = destino;
+      const modal = document.getElementById('calendarModal');
+      const title = document.getElementById('calendarTitle');
+      const weekdays = document.getElementById('weekdays');
+      const calendarDays = document.getElementById('calendarDays');
+      const transportInfo = document.getElementById('calendarTransport');
+      
+      // Definir título
+      title.textContent = `Datas Disponíveis - ${destinos[destino].title}`;
+      
+      // Gerar dias da semana
+      weekdays.innerHTML = '';
+      const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+      diasSemana.forEach(dia => {
+        const div = document.createElement('div');
+        div.className = 'calendar-weekday';
+        div.textContent = dia;
+        weekdays.appendChild(div);
+      });
+      
+      // Gerar dias do mês
+      calendarDays.innerHTML = '';
+      const mes = destinos[destino].mes;
+      const ano = destinos[destino].ano;
+      const primeiroDia = new Date(ano, mes, 1).getDay();
+      const ultimoDia = new Date(ano, mes + 1, 0).getDate();
+      
+      // Dias vazios no início
+      for (let i = 0; i < primeiroDia; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day unavailable';
+        calendarDays.appendChild(emptyDay);
+      }
+      
+      // Dias do mês
+      for (let i = 1; i <= ultimoDia; i++) {
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        dayElement.textContent = i;
+        
+        // Verificar se o dia está disponível
+        if (destinos[destino].onibus.includes(i) || destinos[destino].aviao.includes(i)) {
+          dayElement.classList.add('available');
+          
+          // Adicionar evento de clique
+          dayElement.addEventListener('click', () => {
+            selecionarDia(i, destino);
+          });
+        } else {
+          dayElement.classList.add('unavailable');
+        }
+        
+        calendarDays.appendChild(dayElement);
+      }
+      
+      // Informações de transporte
+      transportInfo.innerHTML = '';
+      if (destinos[destino].onibus.length > 0) {
+        const busInfo = document.createElement('div');
+        busInfo.innerHTML = `
+          <div class="transport-icon transport-bus"><i class="fas fa-bus"></i></div>
+          <p>Ônibus disponível nos dias: ${destinos[destino].onibus.join(', ')}</p>
+        `;
+        transportInfo.appendChild(busInfo);
+      }
+      
+      if (destinos[destino].aviao.length > 0) {
+        const planeInfo = document.createElement('div');
+        planeInfo.innerHTML = `
+          <div class="transport-icon transport-airplane"><i class="fas fa-plane"></i></div>
+          <p>Avião disponível nos dias: ${destinos[destino].aviao.join(', ')}</p>
+        `;
+        transportInfo.appendChild(planeInfo);
+      }
+      
+      // Mostrar modal
+      modal.style.display = 'flex';
+    }
+    
+    function fecharCalendario() {
+      const modal = document.getElementById('calendarModal');
+      modal.style.display = 'none';
+    }
+    
+    function selecionarDia(dia, destino) {
+      // Limpar seleções anteriores
+      document.querySelectorAll('.calendar-day.selected').forEach(el => {
+        el.classList.remove('selected');
+      });
+      
+      // Selecionar o dia clicado
+      const days = document.querySelectorAll('.calendar-day');
+      days.forEach(dayEl => {
+        if (parseInt(dayEl.textContent) === dia) {
+          dayEl.classList.add('selected');
+          
+          // Mostrar mensagem de confirmação
+          setTimeout(() => {
+            alert(`Você selecionou o dia ${dia} para ${destinos[destino].title}. Em breve entraremos em contato para confirmar sua reserva!`);
+            fecharCalendario();
+          }, 300);
+        }
+      });
+    }
+    
+    // Fechar o calendário ao clicar fora dele
+    window.addEventListener('click', (event) => {
+      const modal = document.getElementById('calendarModal');
+      if (event.target === modal) {
+        fecharCalendario();
+      }
+    });
+    
+    // Botão de voltar ao topo
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Animações ao rolar a página
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    // Observar elementos com a classe animate
+    document.querySelectorAll('.animate').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

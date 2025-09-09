@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ViajaMundo - Sua agência de viagens</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <h1>ViajaAoMundo</h1>
+    <nav>
+      <ul>
+        <li><a href="#destinos">Destinos</a></li>
+        <li><a href="#pacotes">Pacotes</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Viaje de Ônibus ou Avião para qualquer lugar do mundo!</h2>
+    <button onclick="mostrarMensagem()">Pacotes</button>
+  </section>
+
+  <section id="destinos" class="content">
+    <h3>Destinos Populares</h3>
+    <div class="cards">
+      <div class="card">
+        <button class="destino-btn" onclick="abrirBalãoParis()">clique aqui</button>
+        <div id="balao-paris" class="balao-oculto"></div>
+        <h4>Paris</h4>
+        <p>Avião - A partir de R$3500</p>
+        <div class="balao-conteudo">
+            <span class="fechar" onclick="fecharBalãoParis()">❌</span>
+            <h4>Dias Disponíveis para Paris</h4>
+            <p><strong>Ônibus:</strong> 10, 15, 22 e 29 de setembro</p>
+            <p><strong>Avião:</strong> 5, 12, 19, 26 de setembro</p>
+          </div>
+        </div>
+      
+      
+      <div class="card">
+        <button class="destino-btn" onclick="abrirBalaoRio()">clique aqui</button>
+        <h4>Rio de Janeiro</h4>
+        <p>Ônibus - A partir de R$200</p>
+        <div id="balao-rio" class="balao-oculto">
+            <div class="balao-conteudo">
+              <span class="fechar" onclick="fecharBalaoRio()">❌</span>
+              <h4>Dias Disponíveis para o Rio</h4>
+              <p><strong>Ônibus:</strong> 3, 10, 17, 24 e 30 de setembro</p>
+            </d iv>
+          </div>
+        </div>
+        
+      </div>
+      <div class="card">
+        <button class="destino-btn" onclick="abrirBalaoNY()">clique aqui</button>
+        <h4>Nova York</h4>
+        <p>Avião - A partir de R$4200</p>
+        <div id="balao-ny" class="balao-oculto">
+            <div class="balao-conteudo">
+              <span class="fechar" onclick="fecharBalaoNY()">❌</span>
+              <h4>Dias Disponíveis para Nova York</h4>
+              <p><strong>Avião:</strong> 6, 13, 20 e 27 de setembro</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+  </section>
+
+  
+  
+
+  <section id="pacotes" class="content">
+    <h3>Pacotes Especiais</h3>
+    <p>Consulte nossas ofertas personalizadas para grupos e famílias!</p>
+  </section>
+
+  <section id="contato" class="content contato">
+    <h3>Entre em contato</h3>
+    <form onsubmit="enviarFormulario(event)">
+      <input type="text" placeholder="Seu nome" required />
+      <input type="email" placeholder="Seu e-mail" required />
+      <textarea placeholder="Sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <section class="hero">
+    <h2>Viaje de Ônibus ou Avião para qualquer lugar do mundo!</h2>
+    <div class="botoes-hero">
+      <button onclick="mostrarMensagem()">Fale conosco</button>
+      <button onclick="verPacotes()">Ver Pacotes Disponíveis</button>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 ViajaAoMundo. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
+
+  
